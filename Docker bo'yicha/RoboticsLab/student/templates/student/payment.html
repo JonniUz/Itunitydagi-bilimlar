@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form action="" method="get">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2">
+                {{ filter.form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-md">
+                {{ filter.form.last_name|as_crispy_field }}
+            </div>
+            <div class="col">
+                {{ filter.form.middle_name|as_crispy_field }}
+            </div>
+        </div>
+        {{ filter.form.amount|as_crispy_field }}
+        <div class="row">
+            <div class="col">
+                {{ filter.form.month|as_crispy_field }}
+            </div>
+            <div class="col">
+                {{ filter.form.start_date|as_crispy_field }}
+            </div>
+            <div class="col">
+                {{ filter.form.end_date|as_crispy_field }}
+            </div>
+        </div>
+        <br>
+        <input class="btn btn-primary btn-block" type="submit"/>
+        <a class="btn btn-danger btn-block" href="{% url 'payment' %}">Reset</a>
+
+    </div>
+
+</form>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">O'quvchi</th>
+        <th scope="col">Guruh</th>
+        <th scope="col">Qaysi oy</th>
+        <th scope="col">Miqdor</th>
+        <th scope="col">To'langan vaqt</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ object.student.first_name }} {{ object.student.last_name }} {{ object.student.middle_name }}</td>
+        <td>{{ object.student.group }}</td>
+        <td>{{ object.month }}</td>
+        <td>{{ object.amount }} sum</td>
+        <td>{{ object.date_paid|date:"d M, Y" }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[0].placeholder = 'First Name..';
+    form_fields[1].placeholder = 'Last Name..';
+    form_fields[2].placeholder = 'Middle Name..';
+    form_fields[3].placeholder = 'Payment Amount..';
+    form_fields[4].placeholder = 'Start day..';
+    form_fields[5].placeholder = 'End day..';
+
+
+</script>
+
+{% endblock content %}

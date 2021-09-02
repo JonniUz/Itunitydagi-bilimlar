@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block content %}
+<h4 class="title" style="text-align: center">Groups List</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Guruh Nomlari</th>
+        <th scope="col">Haqida ma'lumot</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{% url 'group-detail' object.id %}" style="color: black">{{ object.name }}</a></td>
+        <td>{{ object.description }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

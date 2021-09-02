@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Guruh Nomi</th>
+        <th scope="col">Haqida ma'lumot</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ object.name }}</td>
+        <td>{{ object.description }}</td>
+    </tr>
+    </tbody>
+</table>
+<a href="{% url 'group' %}" class="btn btn-block btn-secondary btn-sm">Cancel</a>
+
+
+{% endblock content %}

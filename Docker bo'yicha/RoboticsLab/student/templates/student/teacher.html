@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ismi</th>
+      <th scope="col">Familiyasi</th>
+      <th scope="col">Otasini ismi</th>
+      <th scope="col">Guruhi</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'teacher-detail' object.id %}" style="color: black">{{ object.first_name }}</a></td>
+      <td>{{ object.last_name }}</td>
+      <td>{{ object.middle_name }}</td>
+      <td>{{ object.group }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
